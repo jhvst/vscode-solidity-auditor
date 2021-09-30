@@ -254,9 +254,11 @@ class Commands{
                 */
                 break;
             case "parse":
-                ret = surya.parse(documentOrListItems.uri.fsPath);
+                ret = surya.parse(files[0]);
                 vscode.workspace.openTextDocument({content: ret, language: "markdown"})
-                    .then(doc => vscode.window.showTextDocument(doc, vscode.ViewColumn.Beside));
+                    .then(doc => {
+                        vscode.window.showTextDocument(doc, vscode.ViewColumn.Beside);
+                    });
                 break;
             case "dependencies":
                 ret = surya.dependencies(files, args[0]);
